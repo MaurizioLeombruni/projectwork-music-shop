@@ -12,7 +12,7 @@
 }
 
 .carousel {
-    width: 60;
+    width: 60%;
     height: 45%;
 }
 
@@ -47,4 +47,8 @@
 
 .background-footer {
     background-color: rgb(22, 22, 22);
+}
+
+.color-nav {
+    color: black;
 }
