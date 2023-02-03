@@ -34,6 +34,8 @@ namespace ShopStrumentiMusicali.Controllers {
                     {
                         ins.State = "Disponibile";
                     }
+
+                    db.SaveChanges();
                 }
                 return View("Warehouse", instrumentsList);
             }
