@@ -130,7 +130,13 @@
     <div id="js_instrument_table" class="row d-none">
         <!--qui verranno mostrati gli elementi -->
         <!--Richiamo a file JS-->
+        
+        <div id="likeButton" class="row d-none">
+        <!--qui viene mostrato il bottone like-->
+        </div>
+
     </div>
+    
 </div>
 
 
@@ -211,7 +217,7 @@
     {
                                                              <a href="Identity/Account/Login" class="btn btn-primary">Compra</a>
     }
-                                                             <br/>
+                                                               <br/>
                                                                   <br/>
                                                                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                                                                           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -238,31 +244,42 @@
 
             }
 
-            res.data.forEach(instrument => {
+         res.data.forEach(instrument => {
                 document.querySelector(`.toggle-button${instrument.id}`).addEventListener("click", function () {
                     console.log("Dentro: " + instrument.userLikes);
-                    document.querySelector(`.toggle-button${instrument.id}`).classList.toggle("liked");
-                    if (!document.querySelector(`.toggle-button${instrument.id}`).classList.contains("liked")) {
-                        instrument.userLikes--;
-                        likeClicked(instrument.id, instrument.userLikes);
-                    }
-                    else {
-                        instrument.userLikes++;
-                        likeClicked(instrument.id, instrument.userLikes);
-                    }
+                     axios.post("/AddLike")
+                 .then(function (response) {
+                console.log(response.data);
+
+                instrument.userLikes ++;
+
                     document.querySelector(`.toggle-button${instrument.id}`).innerHTML = instrument.userLikes + " Like";
                 });
 
             });
 
         });
-    }
+    } 
 
-   function myFunction(x) {  
-  x.classList.toggle("fa-thumbs-down");  
-}  
-        
+   function myFunction(x) {
+       x.classList.toggle("fa-thumbs-down");
+}
+</script>
 
+<script type="text/javascript">
+
+loadLikeBtn();
+
+function loadLikeBtn(){
+    axios.post('/api/InstrumentApi', {
+        data: {
+            id: instrument.id
+        } 
+    }).then ((response) => {
+        console.log("likes inviato ", response);
+    });
+}
 
 
 </script>
+   

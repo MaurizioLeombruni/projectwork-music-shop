@@ -59,44 +59,14 @@ namespace ShopStrumentiMusicali.Controllers {
                 return Ok(instrumentFromDb.UserLikes);
             }
         }
-
-
-
-        [HttpPost("increment")]
-        public async Task<ActionResult<int?>> IncrementLike(int id)
-        {
-            var instrument = await _context.Instruments.FindAsync(id);
-            if (instrument == null)
-            {
-                return NotFound("L'instrument con questo id non è stato trovato!");
-            }
-
-            instrument.UserLikes++;
-            await _context.SaveChangesAsync();
-
-            return Ok(instrument.UserLikes);
-        }
-
-        [HttpPost("decrement")]
-        public async Task<ActionResult<int?>> DecrementLike(int id)
-        {
-            var instrument = await _context.Instruments.FindAsync(id);
-            if (instrument == null)
-            {
-                return NotFound("L'instrument con questo id non è stato trovato!");
-            }
-            instrument.UserLikes--;
-            await _context.SaveChangesAsync();
-
-            return Ok(instrument.UserLikes);
-        }
-
-
-
-
     }
 
 
 }
+
+
+
+
+
 
 
